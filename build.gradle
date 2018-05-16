@@ -1,0 +1,27 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+ext {
+    applicationId = "org.acestream.engine.client.example"
+    appCompatVersion = '27.1.1'
+    compileSdkVersion = 26
+    minSdkVersion = 14
+    targetSdkVersion = 26
+    versionName = '1.0.0'
+    versionCode = 10000
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ace Stream Client example</string>
+    <string name="bind">Bind</string>
+    <string name="unbind">Unbind</string>
+</resources>
