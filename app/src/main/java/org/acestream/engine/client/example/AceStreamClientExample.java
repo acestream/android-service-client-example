@@ -64,6 +64,12 @@ public class AceStreamClientExample extends AppCompatActivity implements Service
 	}
 
 	@Override
+	protected void onStop() {
+		super.onStop();
+		mServiceClient.disconnect();
+	}
+
+	@Override
 	public void onConnected(int engineApiPort, int httpApiPort) {
 		showMessage("Event: engine connected: engine_api_port=" + engineApiPort + " http_api_port=" + httpApiPort);
 	}
