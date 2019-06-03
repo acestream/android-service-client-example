@@ -1,7 +1,7 @@
 package org.acestream.engine.client.example;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.RemoteException;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -9,6 +9,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import org.acestream.engine.ServiceClient;
+import org.acestream.engine.service.v0.IAceStreamEngine;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AceStreamClientExample extends AppCompatActivity implements ServiceClient.Callback {
 
@@ -21,7 +24,7 @@ public class AceStreamClientExample extends AppCompatActivity implements Service
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mServiceClient = new ServiceClient(this, this);
+		mServiceClient = new ServiceClient("ClientExample", this, this);
 
 		mListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mListItems);
 		ListView listView = findViewById(R.id.service_msg_list);
@@ -33,11 +36,9 @@ public class AceStreamClientExample extends AppCompatActivity implements Service
 			public void onClick(View v) {
 				showMessage("Command: start engine");
 				try {
-					if (!mServiceClient.startEngine()) {
-						showMessage("Error: failed to start");
-					}
+					mServiceClient.startEngine();
 				}
-				catch(ServiceClient.EngineNotFoundException e) {
+				catch(ServiceClient.ServiceMissingException e) {
 					showMessage("Error: engine not found");
 				}
 			}
@@ -48,7 +49,7 @@ public class AceStreamClientExample extends AppCompatActivity implements Service
 			@Override
 			public void onClick(View v) {
 				showMessage("Command: disconnect");
-				mServiceClient.disconnect();
+				mServiceClient.unbind();
 			}
 		});
 	}
@@ -66,12 +67,19 @@ public class AceStreamClientExample extends AppCompatActivity implements Service
 	@Override
 	protected void onStop() {
 		super.onStop();
-		mServiceClient.disconnect();
+		mServiceClient.unbind();
 	}
 
 	@Override
-	public void onConnected(int engineApiPort, int httpApiPort) {
-		showMessage("Event: engine connected: engine_api_port=" + engineApiPort + " http_api_port=" + httpApiPort);
+	public void onConnected(IAceStreamEngine service) {
+		try {
+			int engineApiPort = service.getEngineApiPort();
+			int httpApiPort = service.getHttpApiPort();
+			showMessage("Event: engine connected: engine_api_port=" + engineApiPort + " http_api_port=" + httpApiPort);
+		}
+		catch(RemoteException e) {
+			showMessage(e.getMessage());
+		}
 	}
 
 	@Override
@@ -109,5 +117,9 @@ public class AceStreamClientExample extends AppCompatActivity implements Service
 
 	@Override
 	public void onRestartPlayer() {
+	}
+
+	@Override
+	public void onSettingsUpdated() {
 	}
 }

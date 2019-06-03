@@ -18,6 +18,6 @@ android {
 }
 
 dependencies {
-    api "com.android.support:appcompat-v7:$rootProject.ext.appCompatVersion"
+    api "androidx.appcompat:appcompat:$rootProject.ext.androidxAppcompatVersion"
     implementation project(':AceStreamClient')
 }
