@@ -21,6 +21,8 @@ ext {
     androidxAppcompatVersion = '1.0.2'
     junitVersion = '4.12'
     compileSdkVersion = 28
+    retrofitVersion = '2.4.0'
+    okHttpVersion = '3.11.0'
     minSdkVersion = 14
     targetSdkVersion = 28
     versionName = '1.0.0'

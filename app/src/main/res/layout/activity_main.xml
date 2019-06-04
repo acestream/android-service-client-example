@@ -13,6 +13,26 @@
         android:layout_height="wrap_content"
         android:text="@string/unbind"
         />
+    <Button android:id="@+id/btn_start_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start session"
+        />
+    <Button android:id="@+id/btn_open_in_acestream_deprecated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open in Ace Stream (deprecated)"
+        />
+    <Button android:id="@+id/btn_open_in_acestream_show_resolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open in Ace Stream (show resolver)"
+        />
+    <Button android:id="@+id/btn_open_in_acestream_skip_resolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open in Ace Stream (skip resolver)"
+        />
     <ListView android:id="@+id/service_msg_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
