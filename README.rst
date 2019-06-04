@@ -59,7 +59,7 @@ In this sample app there are three buttons which show basic integration:
 Advanced integration
 --------------------
 
-This kind of integration supposes the usage of either `Engine API <http://wiki.acestream.org/wiki/index.php/Engine_API>` of `HTTP API <http://wiki.acestream.org/wiki/index.php/Engine_HTTP_API>`. If you don't know whether you need to use engine API - please use basic integration.
+This kind of integration supposes the usage of either `Engine API <http://wiki.acestream.org/wiki/index.php/Engine_API>`_ of `HTTP API <http://wiki.acestream.org/wiki/index.php/Engine_HTTP_API>`_. If you don't know whether you need to use engine API - please use basic integration.
 
 This sample app shows integration with HTTP API.
 
@@ -97,7 +97,7 @@ When user without "Proxy Server" option tries to watch content in some external 
 
 For third-party app developers it's important to know how exactly Ace Stream engine detects external or built-in player. The detection happens when some software accesses playback URL (an URL which is returned to the client in ``playback_url`` via HTTP API or in ``START URL`` command via Engine API). When some software accesses this URL (sends HTTP request to it) engine detects whether it's built-in or some external player. In the case of external player engine checks whether user is signed in and has "Proxy Server" option. If neither is true then timer is started and engine stops session after 5 minutes and shows notification to the user.
 
-Such behavior of Ace Stream engine means that third-party applications should not access playback URL if they are not sure that the user signed in to Ace Stream engine has "Proxy Server" option, otherwise playback will be stopped within 5 minutes.
+Such behavior of Ace Stream engine means that third-party applications should not access playback URL if they are not sure that the user signed in to Ace Stream engine has "Proxy Server" option, otherwise playback will be stopped within 5 minutes. To check whether some option is activated you should use `Engine Service API <http://wiki.acestream.org/wiki/index.php/Engine_Service_API>`_
 
 
 Opening playback URL in Ace Player
